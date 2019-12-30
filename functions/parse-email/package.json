@@ -1,0 +1,9 @@
+{
+  "name": "parse-email",
+  "version": "1.0.0",
+  "main": "parse-email.js",
+  "license": "MIT",
+  "dependencies": {
+    "mailparser": "^2.7.7"
+  }
+}

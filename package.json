@@ -1,0 +1,11 @@
+{
+  "name": "rebuff",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:dthyresson/rebuff.git",
+  "author": "David Thyresson <dthyresson@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "mailparser": "^2.7.7"
+  }
+}
