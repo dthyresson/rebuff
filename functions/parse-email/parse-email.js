@@ -1,4 +1,3 @@
-const simpleParser = require("mailparser").simpleParser;
 const querystring = require("querystring");
 
 // const crypto = require('crypto')
