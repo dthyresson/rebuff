@@ -12,7 +12,7 @@ npm-*
 .DS_store
 
 # build folders
-dist
+#dist
 /functions
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
@@ -93,7 +93,7 @@ typings/
 
 # Nuxt.js build / generate output
 .nuxt
-dist
+#dist
 
 # Gatsby files
 .cache/
