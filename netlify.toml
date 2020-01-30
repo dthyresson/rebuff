@@ -1,8 +1,8 @@
 # example netlify.toml
 [build]
-  command = "netlify-lambda build ./src/lambda"
+  command = "npm run build"
   publish   = "dist"
-  functions = "functions"
+  functions = "functions/"
 
   ## Uncomment to use this redirect for Single Page Applications like create-react-app.
   ## Not needed for static site generators.

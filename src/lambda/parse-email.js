@@ -2,13 +2,17 @@ import { logger } from "./lib/utils";
 
 require("dotenv").config({
   path: `.env.${
-    process.env.NODE_ENV === "production" ? "production" : "development"
+    process.env.CONTEXT === "production" ? "production" : "development"
   }`
 });
 
 const env = {
   FAUNADB_SERVER_SECRET: process.env.FAUNADB_SERVER_SECRET
 };
+
+console.log(env.FAUNADB_SERVER_SECRET);
+console.log(process.env.FAUNADB_SERVER_SECRET);
+console.log(process.env.CONTEXT);
 
 const faunadb = require("faunadb");
 const q = faunadb.query;
@@ -40,9 +44,13 @@ const saveMessage = email => {
     .query(q.Create(q.Collection("messages"), doc))
     .then(response => {
       console.log("success", response);
+      logger();
+
       return;
     })
     .catch(error => {
+      logger();
+
       console.log("error", error);
       return;
     });
