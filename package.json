@@ -5,8 +5,17 @@
   "repository": "git@github.com:dthyresson/rebuff.git",
   "author": "David Thyresson <dthyresson@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "postinstall": "netlify-lambda install"
+  },
   "dependencies": {
+    "dkim-signature": "^1.3.0",
+    "email-addresses": "^3.1.0",
+    "encoding": "^0.1.12",
+    "faunadb": "^2.11.1",
+    "lodash": "^4.17.15",
     "mailparser": "^2.7.7",
+    "netlify-lambda": "^1.6.3",
     "node-fetch": "^2.6.0"
   }
 }
