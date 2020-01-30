@@ -1,3 +1,5 @@
+import { logger } from "./lib/utils";
+
 require("dotenv").config();
 
 const addressparser = require("email-addresses");
@@ -88,6 +90,10 @@ const validate = user => {
 
 exports.handler = function(event, context, callback) {
   console.log("identity");
+
+  logger();
+  logger();
+  logger();
 
   console.log(event);
   console.log(context);

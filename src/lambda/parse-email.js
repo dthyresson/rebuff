@@ -1,3 +1,5 @@
+import { logger } from "./lib/utils";
+
 require("dotenv").config({
   path: `.env.${
     process.env.NODE_ENV === "production" ? "production" : "development"
@@ -47,6 +49,8 @@ const saveMessage = email => {
 };
 
 exports.handler = function(event, context, callback) {
+  logger();
+
   const email = querystring.parse(event.body);
   console.log(email.subject);
 
