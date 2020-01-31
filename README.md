@@ -15,7 +15,7 @@ ngrok http 34567 -subdomain=dthyresson
 
 ```
 ngrok http 34567 -subdomain=dthyresson
-https://dthyresson.ngrok.io/.netlify/functions/parse-email
+https://dthyresson.ngrok.io/.netlify/functions/messages/listen
 ```
 
 ## Identity Setup

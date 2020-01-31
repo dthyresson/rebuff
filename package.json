@@ -22,12 +22,18 @@
     "faunadb": "^2.11.1",
     "lodash": "^4.17.15",
     "mailparser": "^2.7.7",
-    "node-fetch": "^2.6.0",
-    "serverless-http": "^2.3.1"
+    "serverless-http": "^2.3.1",
+    "webpack-node-externals": "^1.7.2"
   },
   "devDependencies": {
+    "@upstatement/eslint-config": "^0.4.3",
+    "@upstatement/prettier-config": "^0.3.0",
+    "babel-eslint": "^10.0.3",
     "concurrently": "^5.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
     "netlify-lambda": "^1.6.3",
+    "prettier": "^1.19.1",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.1"

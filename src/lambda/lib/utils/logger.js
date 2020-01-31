@@ -1,1 +1,3 @@
-export default logger => console.log(">>>>>>>>>>>>>>>");
+const logger = console.log('>>>>>>>>>>>>>>>');
+
+export default logger;

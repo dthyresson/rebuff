@@ -1,8 +1,10 @@
-# example netlify.toml
 [build]
   command = "npm run build"
   publish   = "dist"
   functions = "functions/"
+
+# Note: the trailing slash in "functions/" is important, otherwise netlify-lambda willl
+# confuse the directories when building
 
   ## Uncomment to use this redirect for Single Page Applications like create-react-app.
   ## Not needed for static site generators.
