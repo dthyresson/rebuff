@@ -1,38 +1,33 @@
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
-import { login, signup, validate } from '../../utils';
+import { env, login, signup, validate } from '../../utils';
 
 const isValid = req => {
   try {
     const headers = req.headers;
     const token = headers['x-webhook-signature'] || headers['X-Webhook-Signature'];
 
-    console.log(req.body);
+    jwt.verify(token, env.NETLIFY_IDENTITY_WEBHOOK_SECRET, { issuer: 'gotrue' }, function(
+      err,
+      decoded,
+    ) {
+      if (decoded !== undefined) {
+        const digest = crypto
+          .createHash('sha256')
+          .update(req.body.toString())
+          .digest('hex');
 
-    console.log(headers);
-    console.log(token);
+        const sha = decoded.sha256;
 
-    const decoded = jwt.verify(token, 'boo', { issuer: 'gotrue' });
-
-    console.log(decoded);
-
-    const digest = crypto
-      .createHash('sha256')
-      .update(req.body.toString())
-      .digest('hex');
-
-    console.log(digest);
-
-    const sha = decoded.sha256;
-
-    console.log(sha);
-
-    // return sha === digest ? true : false;
+        // return sha === digest ? true : false;
+      } else {
+        throw new Error('Invalid webhook signature');
+      }
+    });
 
     return true;
   } catch (error) {
     console.log(error.toString());
-
     return false;
   }
 };
@@ -62,6 +57,7 @@ export default (router, path) => {
         res.status(401).send();
       }
     } catch (error) {
+      console.log('identity hook failed');
       console.log(error.toString());
       res.status(400).send(error.error);
     }
