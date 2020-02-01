@@ -14,12 +14,13 @@ const updateUser = user => {
     .query(q.Replace(q.Select('ref', q.Get(q.Match(q.Index('users_by_id'), user.id))), data))
     .then(response => {
       console.log('update user success');
-      return;
     })
     .catch(error => {
       console.log('error', error);
       throw error;
     });
+
+  return;
 };
 
 const login = user => {
