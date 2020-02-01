@@ -2,11 +2,11 @@ import addressparser from 'email-addresses';
 import { query as q } from 'faunadb';
 import { APIClient, env } from '../../utils';
 
-const client = APIClient.faunadb();
-
 const createMailbox = (userRef, user) => {
   const mailboxAddress = addressparser.parseOneAddress(user.email);
   console.log('Function `createMailbox` invoked');
+
+  const client = APIClient.faunadb();
 
   const data = {
     data: { name: mailboxAddress.local, user: userRef },
@@ -25,6 +25,8 @@ const createMailbox = (userRef, user) => {
 };
 
 const createUserAndMailbox = user => {
+  const client = APIClient.faunadb();
+
   const data = {
     data: user,
   };

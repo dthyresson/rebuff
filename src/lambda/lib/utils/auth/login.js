@@ -1,9 +1,9 @@
 import { query as q } from 'faunadb';
 import { APIClient, env } from '../../utils';
 
-const client = APIClient.faunadb();
-
 const updateUser = user => {
+  const client = APIClient.faunadb();
+
   console.log('Function `updateUser` invoked');
 
   const data = {
