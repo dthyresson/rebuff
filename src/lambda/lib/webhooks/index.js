@@ -12,7 +12,15 @@ const routes = [
     route: email,
   },
   {
-    path: '/identity',
+    path: '/identity-validate',
+    route: identity,
+  },
+  {
+    path: '/identity-signup',
+    route: identity,
+  },
+  {
+    path: '/identity-validate',
     route: identity,
   },
 ];

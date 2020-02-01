@@ -23,5 +23,18 @@ https://dthyresson.ngrok.io/.netlify/functions/messages/listen
 ### Webhooks
 
 ```
-https://dthyresson.ngrok.io/.netlify/functions/identity
+Webhook
+
+We’ll send a POST request to the URL you define with any subscribed events.
+
+URL: https://dthyresson.ngrok.io/.netlify/functions/webhooks/identity
+Secret:
+Events: validate / signup / login
+
+```
+
+requestContext: { identity: {} },
+
+```
+
 ```
