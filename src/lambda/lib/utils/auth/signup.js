@@ -48,7 +48,7 @@ const createUserAndMailbox = user => {
 };
 
 const signup = user => {
-  console.log('Function `signup` invoked', user);
+  console.log('Function `signup` invoked');
 
   try {
     createUserAndMailbox(user);
