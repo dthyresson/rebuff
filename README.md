@@ -11,6 +11,11 @@ netlify dev
 ngrok http 34567 -subdomain=dthyresson
 ```
 
+```
+npm start
+ngrok http 34567 -subdomain=dthyresson
+```
+
 ## Mailgun Receive Route with Tunneling
 
 ```

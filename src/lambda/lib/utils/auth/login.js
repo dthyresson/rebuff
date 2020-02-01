@@ -10,10 +10,10 @@ const updateUser = user => {
     data: user,
   };
 
-  return client
+  client
     .query(q.Replace(q.Select('ref', q.Get(q.Match(q.Index('users_by_id'), user.id))), data))
     .then(response => {
-      console.log('update user success', response);
+      console.log('update user success');
       return;
     })
     .catch(error => {
@@ -23,7 +23,7 @@ const updateUser = user => {
 };
 
 const login = user => {
-  console.log('Function `login` invoked', user);
+  console.log('Function `login` invoked');
 
   try {
     updateUser(user);

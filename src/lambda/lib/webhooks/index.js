@@ -12,7 +12,7 @@ const routes = [
     route: email,
   },
   {
-    path: '/',
+    path: '/identity',
     route: identity,
   },
 ];

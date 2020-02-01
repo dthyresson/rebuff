@@ -6,13 +6,13 @@ const client = APIClient.faunadb();
 
 const createMailbox = (userRef, user) => {
   const mailboxAddress = addressparser.parseOneAddress(user.email);
-  console.log('Function `createMailbox` invoked', mailboxAddress);
+  console.log('Function `createMailbox` invoked');
 
   const data = {
     data: { name: mailboxAddress.local, user: userRef },
   };
 
-  return client
+  client
     .query(q.Create(q.Collection('mailboxes'), data))
     .then(response => {
       console.log('create mailbox success');
