@@ -16,12 +16,13 @@ const createMailbox = (userRef, user) => {
     .query(q.Create(q.Collection('mailboxes'), data))
     .then(response => {
       console.log('create mailbox success');
-      return;
     })
     .catch(error => {
       console.log('error', error);
       throw error;
     });
+
+  return;
 };
 
 const createUserAndMailbox = user => {
@@ -37,13 +38,13 @@ const createUserAndMailbox = user => {
       console.log('create user success');
 
       createMailbox(response['ref'], user);
-
-      return;
     })
     .catch(error => {
       console.log('error', error);
       throw error;
     });
+
+  return;
 };
 
 const signup = user => {
