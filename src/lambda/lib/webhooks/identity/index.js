@@ -4,8 +4,6 @@ import { login, signup, validate } from '../../utils';
 
 const isValid = req => {
   try {
-    return true;
-
     const headers = req.headers;
     const token = headers['x-webhook-signature'] || headers['X-Webhook-Signature'];
 

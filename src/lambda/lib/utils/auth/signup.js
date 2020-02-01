@@ -29,7 +29,7 @@ const createUserAndMailbox = user => {
     data: user,
   };
 
-  return client
+  client
     .query(q.Create(q.Collection('users'), data))
     .then(response => {
       console.log('create user success');
