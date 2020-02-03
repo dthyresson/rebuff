@@ -53,9 +53,10 @@ export default (router, path) => {
             const validateResult = validate(user);
             break;
         }
-
+        console.log('identity hook success');
         res.status(204).send();
       } else {
+        console.log('identity hook unauthorized');
         res.status(401).send();
       }
     } catch (error) {

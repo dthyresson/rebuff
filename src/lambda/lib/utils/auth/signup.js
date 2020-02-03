@@ -40,10 +40,13 @@ const createUserAndMailbox = async user => {
       createMailbox(response['ref'], user);
     })
     .catch(error => {
+      console.log('identity createUserAndMailbox fail');
+
       console.log('error', error);
       throw error;
     });
 
+  console.log('identity createUserAndMailbox success');
   return;
 };
 
@@ -54,6 +57,7 @@ const signup = async user => {
     createUserAndMailbox(user);
     return;
   } catch {
+    console.log('Unable to signup user.');
     throw new Error('Unable to signup user.');
   }
 };

@@ -16,6 +16,7 @@ const updateUser = async user => {
       console.log('update user success');
     })
     .catch(error => {
+      console.log('update user fail');
       console.log('error', error);
       throw error;
     });
@@ -28,6 +29,8 @@ const login = user => {
 
   try {
     updateUser(user);
+    throw new Error('login success.');
+
     return;
   } catch {
     throw new Error('Unable to login user.');
