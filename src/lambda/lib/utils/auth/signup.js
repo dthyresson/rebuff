@@ -1,6 +1,6 @@
 import addressparser from 'email-addresses';
 import { query as q } from 'faunadb';
-import { APIClient, env } from '../../utils';
+import { APIClient } from '../../utils';
 
 const client = APIClient.faunadb();
 
@@ -32,7 +32,7 @@ const createMailbox = async (userRef, user) => {
   }
 };
 
-const createUserAndMailbox = async user => {
+const createUser = async user => {
   try {
     console.log('identity createUserAndMailbox invoked');
 
@@ -44,11 +44,7 @@ const createUserAndMailbox = async user => {
       .query(q.Create(q.Collection('users'), data))
       .then(response => {
         console.log('create user success');
-
-        const mailboxResponse = await createMailbox(response['ref'], user);
-        console.log(mailboxResponse);
-
-        return mailboxResponse;
+        return response;
       })
       .catch(error => {
         console.log('identity user fail');
@@ -66,14 +62,28 @@ const createUserAndMailbox = async user => {
   }
 };
 
+const createUserAndMailbox = async user => {
+  try {
+    const response = await createUser(user);
+    console.log(response);
+
+    const mailboxResponse = await createMailbox(response['ref'], user);
+    console.log(mailboxResponse);
+
+    return mailboxResponse;
+  } catch (error) {
+    console.log('Unable to createUserAndMailbox.');
+    console.log(error);
+    throw new Error('Unable to createUserAndMailbox.');
+  }
+};
+
 const signup = async user => {
   console.log('Function `signup` invoked');
 
   try {
     const response = await createUserAndMailbox(user);
-    console.log(response);
-
-    return;
+    return response;
   } catch (error) {
     console.log('Unable to signup user.');
     console.log(error);

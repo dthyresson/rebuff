@@ -1,5 +1,5 @@
 import { query as q } from 'faunadb';
-import { APIClient, env } from '../../utils';
+import { APIClient } from '../../utils';
 
 const client = APIClient.faunadb();
 
