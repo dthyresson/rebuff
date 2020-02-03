@@ -44,18 +44,18 @@ export default (router, path) => {
 
         switch (eventType) {
           case 'login':
-            const loginResult = await login(user);
+            const loginResult = login(user);
             console.log('identity hook login success');
             console.log(loginResult);
             break;
           case 'signup':
-            const sigupResult = await signup(user);
+            const sigupResult = signup(user);
             console.log('identity hook signup success');
             console.log(sigupResult);
 
             break;
           case 'validate':
-            const validateResult = await validate(user);
+            const validateResult = validate(user);
             console.log('identity hook validate success');
             console.log(validateResult);
             break;

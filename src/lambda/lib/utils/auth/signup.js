@@ -4,7 +4,7 @@ import { APIClient, env } from '../../utils';
 
 const client = APIClient.faunadb();
 
-const createMailbox = async (userRef, user) => {
+const createMailbox = (userRef, user) => {
   try {
     const mailboxAddress = addressparser.parseOneAddress(user.email);
     console.log('Function `createMailbox` invoked');
@@ -13,7 +13,7 @@ const createMailbox = async (userRef, user) => {
       data: { name: mailboxAddress.local, user: userRef },
     };
 
-    const result = await client
+    const result = client
       .query(q.Create(q.Collection('mailboxes'), data))
       .then(response => {
         console.log('create mailbox success');
@@ -32,7 +32,7 @@ const createMailbox = async (userRef, user) => {
   }
 };
 
-const createUserAndMailbox = async user => {
+const createUserAndMailbox = user => {
   try {
     console.log('identity createUserAndMailbox invoked');
 
@@ -40,7 +40,7 @@ const createUserAndMailbox = async user => {
       data: user,
     };
 
-    const result = await client
+    const result = client
       .query(q.Create(q.Collection('users'), data))
       .then(response => {
         console.log('create user success');
@@ -62,14 +62,14 @@ const createUserAndMailbox = async user => {
   }
 };
 
-const signup = async user => {
+const signup = user => {
   console.log('Function `signup` invoked');
 
   try {
-    const response = await createUserAndMailbox(user);
+    const response = createUserAndMailbox(user);
     console.log(response);
 
-    const mailboxResponse = await createMailbox(response['ref'], user);
+    const mailboxResponse = createMailbox(response['ref'], user);
     console.log(mailboxResponse);
 
     return;

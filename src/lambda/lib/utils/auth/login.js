@@ -3,7 +3,7 @@ import { APIClient, env } from '../../utils';
 
 const client = APIClient.faunadb();
 
-const updateUser = async user => {
+const updateUser = user => {
   try {
     console.log('Function `updateUser` invoked');
 
@@ -15,7 +15,7 @@ const updateUser = async user => {
 
     console.log(data);
 
-    const result = await client
+    const result = client
       .query(q.Replace(q.Select('ref', q.Get(q.Match(q.Index('users_by_id'), user.id))), data), {})
       .then(response => {
         console.log('update user success');
@@ -42,7 +42,7 @@ const login = async user => {
   console.log('Function `login` invoked');
 
   try {
-    const response = await updateUser(user);
+    const response = updateUser(user);
     console.log('login success.');
     console.log(response);
     return response;
