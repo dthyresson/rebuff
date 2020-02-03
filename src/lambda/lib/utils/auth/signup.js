@@ -34,6 +34,8 @@ const createMailbox = async (userRef, user) => {
 
 const createUserAndMailbox = async user => {
   try {
+    console.log('identity createUserAndMailbox invoked');
+
     const client = APIClient.faunadb();
 
     const data = {
@@ -67,10 +69,15 @@ const signup = async user => {
 
   try {
     const response = await createUserAndMailbox(user);
-    await createMailbox(response['ref'], user);
+    console.log(response);
+
+    const mailboxResponse = await createMailbox(response['ref'], user);
+    console.log(mailboxResponse);
+
     return;
-  } catch {
+  } catch (error) {
     console.log('Unable to signup user.');
+    console.log(error);
     throw new Error('Unable to signup user.');
   }
 };
