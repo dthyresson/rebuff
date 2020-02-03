@@ -2,6 +2,8 @@ import addressparser from 'email-addresses';
 import { query as q } from 'faunadb';
 import { APIClient, env } from '../../utils';
 
+const client = APIClient.faunadb();
+
 const createMailbox = async (userRef, user) => {
   try {
     const mailboxAddress = addressparser.parseOneAddress(user.email);
@@ -11,7 +13,8 @@ const createMailbox = async (userRef, user) => {
       data: { name: mailboxAddress.local, user: userRef },
     };
 
-    const result = await APIClient.query(q.Create(q.Collection('mailboxes'), data))
+    const result = await client
+      .query(q.Create(q.Collection('mailboxes'), data))
       .then(response => {
         console.log('create mailbox success');
         return response;
@@ -37,7 +40,8 @@ const createUserAndMailbox = async user => {
       data: user,
     };
 
-    const result = await APIClient.query(q.Create(q.Collection('users'), data))
+    const result = await client
+      .query(q.Create(q.Collection('users'), data))
       .then(response => {
         console.log('create user success');
         return response;

@@ -6,7 +6,7 @@
   "author": "David Thyresson <dthyresson@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "netlify-lambda build ./src/lambda",
+    "build": "netlify-lambda build ./src/lambda -c ./webpack.lambda.js",
     "develop": "concurrently \"npm run develop:client\" \"npm run develop:lambda\"",
     "develop:client": "webpack-dev-server --mode=development --hot --inline",
     "develop:lambda": "netlify-lambda serve ./src/lambda -c ./webpack.lambda.js",
