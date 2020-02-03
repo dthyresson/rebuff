@@ -44,7 +44,11 @@ const createUserAndMailbox = async user => {
       .query(q.Create(q.Collection('users'), data))
       .then(response => {
         console.log('create user success');
-        return response;
+
+        const mailboxResponse = await createMailbox(response['ref'], user);
+        console.log(mailboxResponse);
+
+        return mailboxResponse;
       })
       .catch(error => {
         console.log('identity user fail');
@@ -68,9 +72,6 @@ const signup = async user => {
   try {
     const response = await createUserAndMailbox(user);
     console.log(response);
-
-    const mailboxResponse = await createMailbox(response['ref'], user);
-    console.log(mailboxResponse);
 
     return;
   } catch (error) {
