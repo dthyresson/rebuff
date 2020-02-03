@@ -11,7 +11,7 @@ const updateUser = async user => {
       data: user,
     };
 
-    client
+    const result = await client
       .query(q.Replace(q.Select('ref', q.Get(q.Match(q.Index('users_by_id'), user.id))), data))
       .then(response => {
         console.log('update user success');
@@ -22,18 +22,18 @@ const updateUser = async user => {
         throw error;
       });
 
-    return;
+    return result;
   } catch {
     console.log('updateUser failed');
     throw new Error('updateUser failed');
   }
 };
 
-const login = user => {
+const login = async user => {
   console.log('Function `login` invoked');
 
   try {
-    await updateUser(user);
+    const response = await updateUser(user);
     throw new Error('login success.');
 
     return;

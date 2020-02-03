@@ -13,17 +13,18 @@ const createMailbox = async (userRef, user) => {
       data: { name: mailboxAddress.local, user: userRef },
     };
 
-    client
+    const result = await client
       .query(q.Create(q.Collection('mailboxes'), data))
       .then(response => {
         console.log('create mailbox success');
+        return response;
       })
       .catch(error => {
         console.log('error', error);
         throw error;
       });
 
-    return;
+    return result;
   } catch (error) {
     console.log('createMailbox fail error');
     console.log(error.toString());
@@ -39,12 +40,11 @@ const createUserAndMailbox = async user => {
       data: user,
     };
 
-    client
+    const result = await client
       .query(q.Create(q.Collection('users'), data))
       .then(response => {
         console.log('create user success');
-
-        await createMailbox(response['ref'], user);
+        return response;
       })
       .catch(error => {
         console.log('identity user fail');
@@ -54,7 +54,7 @@ const createUserAndMailbox = async user => {
       });
 
     console.log('identity createUserAndMailbox success');
-    return;
+    return result;
   } catch (error) {
     console.log('createUserAndMailbox fail error');
     console.log(error.toString());
@@ -66,7 +66,8 @@ const signup = async user => {
   console.log('Function `signup` invoked');
 
   try {
-    await createUserAndMailbox(user);
+    const response = await createUserAndMailbox(user);
+    await createMailbox(response['ref'], user);
     return;
   } catch {
     console.log('Unable to signup user.');
