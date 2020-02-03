@@ -37,7 +37,7 @@ const login = async user => {
     const response = await updateUser(user);
     throw new Error('login success.');
     console.log(response);
-    return;
+    return response;
   } catch {
     throw new Error('Unable to login user.');
   }
