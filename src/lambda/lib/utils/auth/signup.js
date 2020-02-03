@@ -2,7 +2,7 @@ import addressparser from 'email-addresses';
 import { query as q } from 'faunadb';
 import { APIClient, env } from '../../utils';
 
-const createMailbox = (userRef, user) => {
+const createMailbox = async (userRef, user) => {
   const mailboxAddress = addressparser.parseOneAddress(user.email);
   console.log('Function `createMailbox` invoked');
 
@@ -25,7 +25,7 @@ const createMailbox = (userRef, user) => {
   return;
 };
 
-const createUserAndMailbox = user => {
+const createUserAndMailbox = async user => {
   const client = APIClient.faunadb();
 
   const data = {
@@ -47,7 +47,7 @@ const createUserAndMailbox = user => {
   return;
 };
 
-const signup = user => {
+const signup = async user => {
   console.log('Function `signup` invoked');
 
   try {

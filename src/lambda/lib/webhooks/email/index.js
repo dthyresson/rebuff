@@ -7,7 +7,7 @@ export default (router, path) => {
   router.post(path, async (req, res) => {
     try {
       const email = req.body;
-      const message = emailParser(email);
+      const message = await emailParser(email);
 
       console.log(message);
 

@@ -1,4 +1,4 @@
-const validate = user => {
+const validate = async user => {
   console.log('Function `validate` invoked', user);
 
   console.log(user);

@@ -44,13 +44,13 @@ export default (router, path) => {
 
         switch (eventType) {
           case 'login':
-            login(user);
+            const loginResult = await login(user);
             break;
           case 'signup':
-            signup(user);
+            const sigupResult = signup(user);
             break;
           case 'validate':
-            validate(user);
+            const validateResult = validate(user);
             break;
         }
 
