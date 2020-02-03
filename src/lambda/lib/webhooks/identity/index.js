@@ -4,8 +4,6 @@ import { env, login, signup, validate } from '../../utils';
 
 const isValid = req => {
   try {
-    return true;
-
     const headers = req.headers;
     const token = headers['x-webhook-signature'] || headers['X-Webhook-Signature'];
 
@@ -44,18 +42,18 @@ export default (router, path) => {
 
         switch (eventType) {
           case 'login':
-            const loginResult = login(user);
+            const loginResult = await login(user);
             console.log('identity hook login success');
             console.log(loginResult);
             break;
           case 'signup':
-            const sigupResult = signup(user);
+            const sigupResult = await signup(user);
             console.log('identity hook signup success');
             console.log(sigupResult);
 
             break;
           case 'validate':
-            const validateResult = validate(user);
+            const validateResult = await validate(user);
             console.log('identity hook validate success');
             console.log(validateResult);
             break;
