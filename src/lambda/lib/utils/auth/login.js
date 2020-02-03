@@ -15,6 +15,7 @@ const updateUser = async user => {
       .query(q.Replace(q.Select('ref', q.Get(q.Match(q.Index('users_by_id'), user.id))), data))
       .then(response => {
         console.log('update user success');
+        return response;
       })
       .catch(error => {
         console.log('update user fail');
@@ -35,7 +36,7 @@ const login = async user => {
   try {
     const response = await updateUser(user);
     throw new Error('login success.');
-
+    console.log(response);
     return;
   } catch {
     throw new Error('Unable to login user.');
