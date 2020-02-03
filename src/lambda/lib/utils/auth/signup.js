@@ -3,51 +3,63 @@ import { query as q } from 'faunadb';
 import { APIClient, env } from '../../utils';
 
 const createMailbox = async (userRef, user) => {
-  const mailboxAddress = addressparser.parseOneAddress(user.email);
-  console.log('Function `createMailbox` invoked');
+  try {
+    const mailboxAddress = addressparser.parseOneAddress(user.email);
+    console.log('Function `createMailbox` invoked');
 
-  const client = APIClient.faunadb();
+    const client = APIClient.faunadb();
 
-  const data = {
-    data: { name: mailboxAddress.local, user: userRef },
-  };
+    const data = {
+      data: { name: mailboxAddress.local, user: userRef },
+    };
 
-  client
-    .query(q.Create(q.Collection('mailboxes'), data))
-    .then(response => {
-      console.log('create mailbox success');
-    })
-    .catch(error => {
-      console.log('error', error);
-      throw error;
-    });
+    client
+      .query(q.Create(q.Collection('mailboxes'), data))
+      .then(response => {
+        console.log('create mailbox success');
+      })
+      .catch(error => {
+        console.log('error', error);
+        throw error;
+      });
 
-  return;
+    return;
+  } catch (error) {
+    console.log('createMailbox fail error');
+    console.log(error.toString());
+    throw error;
+  }
 };
 
 const createUserAndMailbox = async user => {
-  const client = APIClient.faunadb();
+  try {
+    const client = APIClient.faunadb();
 
-  const data = {
-    data: user,
-  };
+    const data = {
+      data: user,
+    };
 
-  client
-    .query(q.Create(q.Collection('users'), data))
-    .then(response => {
-      console.log('create user success');
+    client
+      .query(q.Create(q.Collection('users'), data))
+      .then(response => {
+        console.log('create user success');
 
-      createMailbox(response['ref'], user);
-    })
-    .catch(error => {
-      console.log('identity createUserAndMailbox fail');
+        createMailbox(response['ref'], user);
+      })
+      .catch(error => {
+        console.log('identity user fail');
 
-      console.log('error', error);
-      throw error;
-    });
+        console.log('error', error);
+        throw error;
+      });
 
-  console.log('identity createUserAndMailbox success');
-  return;
+    console.log('identity createUserAndMailbox success');
+    return;
+  } catch (error) {
+    console.log('createUserAndMailbox fail error');
+    console.log(error.toString());
+    throw error;
+  }
 };
 
 const signup = async user => {

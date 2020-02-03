@@ -2,26 +2,31 @@ import { query as q } from 'faunadb';
 import { APIClient, env } from '../../utils';
 
 const updateUser = async user => {
-  const client = APIClient.faunadb();
+  try {
+    const client = APIClient.faunadb();
 
-  console.log('Function `updateUser` invoked');
+    console.log('Function `updateUser` invoked');
 
-  const data = {
-    data: user,
-  };
+    const data = {
+      data: user,
+    };
 
-  client
-    .query(q.Replace(q.Select('ref', q.Get(q.Match(q.Index('users_by_id'), user.id))), data))
-    .then(response => {
-      console.log('update user success');
-    })
-    .catch(error => {
-      console.log('update user fail');
-      console.log('error', error);
-      throw error;
-    });
+    client
+      .query(q.Replace(q.Select('ref', q.Get(q.Match(q.Index('users_by_id'), user.id))), data))
+      .then(response => {
+        console.log('update user success');
+      })
+      .catch(error => {
+        console.log('update user fail');
+        console.log('error', error);
+        throw error;
+      });
 
-  return;
+    return;
+  } catch {
+    console.log('updateUser failed');
+    throw new Error('updateUser failed');
+  }
 };
 
 const login = user => {
