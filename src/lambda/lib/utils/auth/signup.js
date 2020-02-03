@@ -44,7 +44,7 @@ const createUserAndMailbox = async user => {
       .then(response => {
         console.log('create user success');
 
-        createMailbox(response['ref'], user);
+        await createMailbox(response['ref'], user);
       })
       .catch(error => {
         console.log('identity user fail');
@@ -66,7 +66,7 @@ const signup = async user => {
   console.log('Function `signup` invoked');
 
   try {
-    createUserAndMailbox(user);
+    await createUserAndMailbox(user);
     return;
   } catch {
     console.log('Unable to signup user.');

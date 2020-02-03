@@ -33,7 +33,7 @@ const login = user => {
   console.log('Function `login` invoked');
 
   try {
-    updateUser(user);
+    await updateUser(user);
     throw new Error('login success.');
 
     return;
