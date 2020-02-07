@@ -1,15 +1,10 @@
-import { emailParser, env } from '../../utils';
-
-//
-// saveMessage(email);
+import { saveMessage } from '../../utils/services/messageManager';
 
 export default (router, path) => {
   router.post(path, async (req, res) => {
     try {
       const email = req.body;
-      const message = await emailParser(email);
-
-      console.log(message);
+      const message = await saveMessage(email);
 
       res
         .header('Content-Type', 'application/json')

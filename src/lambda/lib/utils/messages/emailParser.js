@@ -3,7 +3,7 @@ import addressparser from 'email-addresses';
 import _a from 'lodash/array';
 import _o from 'lodash/object';
 
-export default async email => {
+export default email => {
   try {
     const headers = _a.fromPairs(JSON.parse(email['message-headers']));
     const signature = DKIMSignature.parse(headers['Dkim-Signature']);

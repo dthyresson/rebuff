@@ -7,25 +7,27 @@ const isValid = req => {
     const headers = req.headers;
     const token = headers['x-webhook-signature'] || headers['X-Webhook-Signature'];
 
-    jwt.verify(token, env.NETLIFY_IDENTITY_WEBHOOK_SECRET, { issuer: 'gotrue' }, function(
-      err,
-      decoded,
-    ) {
-      if (decoded !== undefined) {
-        const digest = crypto
-          .createHash('sha256')
-          .update(req.body.toString())
-          .digest('hex');
+    const valid = jwt.verify(
+      token,
+      env.NETLIFY_IDENTITY_WEBHOOK_SECRET,
+      { issuer: 'gotrue' },
+      function(err, decoded) {
+        if (decoded !== undefined) {
+          const digest = crypto
+            .createHash('sha256')
+            .update(JSON.stringify(req.body))
+            .digest('hex');
 
-        const sha = decoded.sha256;
+          const sha = decoded.sha256;
 
-        // return sha === digest ? true : false;
-      } else {
-        throw new Error('Invalid webhook signature');
-      }
-    });
+          return sha === digest ? true : false;
+        } else {
+          throw new Error('Invalid webhook signature');
+        }
+      },
+    );
 
-    return true;
+    return valid;
   } catch (error) {
     console.log(error.toString());
     return false;
