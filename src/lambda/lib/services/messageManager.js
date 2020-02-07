@@ -1,5 +1,5 @@
 import { query as q } from 'faunadb';
-import { APIClient, emailParser } from '../../utils';
+import { APIClient, emailParser } from '../utils';
 
 const saveMessage = async email => {
   try {

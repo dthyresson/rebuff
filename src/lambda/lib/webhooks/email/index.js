@@ -1,4 +1,4 @@
-import { saveMessage } from '../../utils/services/messageManager';
+import { saveMessage } from '../../services/messageManager';
 
 export default (router, path) => {
   router.post(path, async (req, res) => {

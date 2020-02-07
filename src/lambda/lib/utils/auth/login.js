@@ -1,4 +1,4 @@
-import { updateUser } from '../services/userManager';
+import { updateUser } from '../../services';
 
 const login = async user => {
   console.log('Function `login` invoked');

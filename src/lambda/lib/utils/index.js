@@ -5,5 +5,6 @@ import emailParser from './messages/emailParser';
 import login from './auth/login';
 import signup from './auth/signup';
 import validate from './auth/validate';
+import validateIdentityWebhook from './validateIdentityWebhook';
 
-export { APIClient, emailParser, env, login, mapRoutes, signup, validate };
+export { APIClient, emailParser, env, login, mapRoutes, signup, validate, validateIdentityWebhook };

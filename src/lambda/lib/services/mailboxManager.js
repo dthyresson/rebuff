@@ -1,6 +1,6 @@
 import addressparser from 'email-addresses';
 import { query as q } from 'faunadb';
-import { APIClient } from '../../utils';
+import { APIClient } from '../utils';
 
 const createMailbox = async (userRef, user) => {
   try {

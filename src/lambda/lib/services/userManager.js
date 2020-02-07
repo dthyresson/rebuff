@@ -1,7 +1,7 @@
 import { createMailbox } from './mailboxManager';
 
 import { query as q } from 'faunadb';
-import { APIClient } from '../../utils';
+import { APIClient } from '../utils';
 
 const createUser = async user => {
   try {
@@ -40,10 +40,7 @@ const createUserAndMailbox = async user => {
     console.log('identity createUserAndMailbox invoked');
 
     const response = await createUser(user);
-    console.log(response);
-
     const mailboxResponse = await createMailbox(response['ref'], user);
-    console.log(mailboxResponse);
 
     return mailboxResponse;
   } catch (error) {
@@ -67,8 +64,6 @@ const updateUser = async user => {
       .query(q.Replace(q.Select('ref', q.Get(q.Match(q.Index('users_by_id'), user.id))), data), {})
       .then(response => {
         console.log('update user success');
-        console.log(response);
-
         return response;
       })
       .catch(error => {

@@ -1,4 +1,4 @@
-import { createUserAndMailbox } from '../services/userManager';
+import { createUserAndMailbox } from '../../services';
 
 const signup = async user => {
   console.log('Function `signup` invoked');
